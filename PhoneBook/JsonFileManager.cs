@@ -9,6 +9,10 @@ public class JsonFileManager : IFileManager
 {
     private const string FILE_PATH_JSON = "ThePhoneBook.json";
 
+    /// <summary>
+    /// Выгрузка из файла json информации в консоль
+    /// </summary>
+    /// <returns></returns>
     public Book Load()
     {
         if (!File.Exists(FILE_PATH_JSON))
@@ -25,6 +29,10 @@ public class JsonFileManager : IFileManager
         return book;
     }
 
+    /// <summary>
+    /// Сохранение полученной информации в json
+    /// </summary>
+    /// <param name="book"></param>
     public void Save(Book book)
     {
         var options = new JsonSerializerOptions

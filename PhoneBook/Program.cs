@@ -29,14 +29,6 @@ namespace PhoneBook
   
   static void Main(string[] args)
   {
-   // var book = new Book();
-   // book.AddRow(new Row(Guid.NewGuid(), "89997776655", "UIO"));
-   // var xmlSer = new XmlSerializer(typeof(Book));
-   // using (var writer = new Utf8StringWriter())
-   // {
-   //  xmlSer.Serialize(writer, book);
-   //  File.WriteAllText(FILE_NAME, writer.ToString(), Encoding.UTF8);
-   // }
    bool showMenu = true;
    
    Console.WriteLine("Выберите 1, если хотите читать из формата XML, 2 - из формата Json");
@@ -59,14 +51,6 @@ namespace PhoneBook
    {
     showMenu = MainMenu(_phoneBook);
    }
-   
-   
-
-   //var book = new Book();
-   //book.AddRow(new Row(Guid.NewGuid(), "89997776655", "ERT"));
-   //FileManager.SaveFile(book);
-   //var book = FileManager.LoadFromFile();
-   //book.Rows.ForEach(r=>Console.WriteLine(r.Id));
   }
   
  static bool MainMenu(Book book)
@@ -169,6 +153,10 @@ namespace PhoneBook
   }
  }
 
+ /// <summary>
+ /// Добавление строчки в книгу
+ /// </summary>
+ /// <param name="book"></param>
  static void ToAddNewRow(Book book)
  {
   
@@ -187,6 +175,11 @@ namespace PhoneBook
                      $"\nКвартира: {row.Apartment}");
   }
 
+ /// <summary>
+ /// Удаление строчки из книги
+ /// </summary>
+ /// <param name="book"></param>
+ /// <exception cref="IdNotExistException"></exception>
   static void ToDeleteRow(Book book)
   {
    Console.WriteLine("Номера, доступные для удаления:");
@@ -217,6 +210,11 @@ namespace PhoneBook
    }
   }
 
+ /// <summary>
+ /// Редактирование строчки
+ /// </summary>
+ /// <param name="book"></param>
+ /// <exception cref="NumberNotExistException">Ошибка существования номера</exception>
   static void ToEditRow(Book book)
   {
    Console.WriteLine("Номера в телефонной книге, доступные для редактирования:");
@@ -251,6 +249,11 @@ namespace PhoneBook
 
   }
 
+ /// <summary>
+ /// Проверка номера теелефона
+ /// </summary>
+ /// <param name="input"></param>
+ /// <exception cref="IncorrectInputException">Неверное введенное значение</exception>
   static void CheckPhoneNumber(string input)
   {
    //проверка номера путем применения регулярных выражений.
@@ -281,6 +284,11 @@ namespace PhoneBook
    return Console.ReadLine();
   }
 
+  /// <summary>
+  /// Метод получения всей вводимой информации, добавленной в строчку
+  /// </summary>
+  /// <param name="id">айди контакта</param>
+  /// <returns></returns>
   static Row GetInputRowData(Guid id)
   {
    var inputNumber = GetInputLine("Введите новый номер телефона")?.Trim();

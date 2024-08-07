@@ -9,6 +9,11 @@ namespace PhoneBook;
 public class XMLManager : IFileManager
 {
     private const string FILE_PATH = "ThePhoneBook.xml";
+    
+    /// <summary>
+    /// Выгрузка из xml файла информации
+    /// </summary>
+    /// <returns></returns>
     public Book Load()
     {
         if (!File.Exists(FILE_PATH))
@@ -37,6 +42,10 @@ public class XMLManager : IFileManager
         return book;
     }
 
+    /// <summary>
+    /// Сохранение в файл xml полученной информации
+    /// </summary>
+    /// <param name="book"></param>
     public void Save(Book book)
     {
         var xmlSer = new XmlSerializer(typeof(Book));
